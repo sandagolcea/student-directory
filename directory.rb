@@ -40,6 +40,22 @@ def print_12(students)
 	end
 end
 
+# ex.5 Rewrite the each() method that prints all students using "while" or "until"
+def print_while(students)
+  index = 0
+  while index < students.size
+    puts "#{students[index][:name]} (#{students[index][:cohort]} cohort)"
+    index += 1
+  end
+end
+
+def print_for(students)
+  for student in students
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  end
+end
+
+
 def print_footer(names)
 	puts "\nOverall, we have #{names.length} great students"
 end
@@ -63,6 +79,7 @@ end
 students = input_students
 print_header
 print(students)
-print_alfa(students)
-print_12(students)
+# print_alfa(students)
+# print_12(students)
+# print_while(students)
 print_footer(students)
