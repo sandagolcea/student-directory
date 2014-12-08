@@ -17,9 +17,18 @@ def print_header
 	puts "-------------"
 end
 
+# ex.2 modify the program to print a number before the name of each student
 def print(students)
-	students.each do |student|
-		puts "#{student[:name]} (#{student[:cohort]} cohort)"
+	students.each_with_index do |student,index|
+		puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
+	end
+end
+
+# ex.3 only print the students whose name begins with a letter "A"
+def print_alfa(students)
+	puts "\nStudents whose name begins with A are:"
+	students.each_with_index do |student,index|
+		puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)" if student[:name].split(//).first.upcase == "A"
 	end
 end
 
@@ -46,4 +55,5 @@ end
 students = input_students
 print_header
 print(students)
+print_alfa(students)
 print_footer(students)
