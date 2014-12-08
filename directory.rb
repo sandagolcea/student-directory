@@ -11,10 +11,11 @@
 # 	{:name => "Freddy Kruger", :cohort => :december},
 # 	{:name => "The Joker", :cohort => :december}
 # ]
+LINESIZE = 60
 
 def print_header
-	puts "The students of my cohort at Makers Academy"
-	puts "-------------"
+	puts "The students of my cohort at Makers Academy".center(LINESIZE)
+	puts "-------------".center(LINESIZE)
 end
 
 # ex.2 modify the program to print a number before the name of each student
@@ -26,7 +27,7 @@ end
 
 # ex.3 only print the students whose name begins with a letter "A"
 def print_alfa(students)
-	puts "\nStudents whose name begins with A are:"
+	puts "\nStudents whose name begins with A are:".center(LINESIZE)
 	students.each_with_index do |student|
 		puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].split(//).first.upcase == "A"
 	end
@@ -34,7 +35,7 @@ end
 
 # ex. 4 only print the students whose name is shorter than 12 characters
 def print_12(students)
-	puts "\nStudents whose name has more than 12 chars are:"
+	puts "\nStudents whose name has more than 12 chars are:".center(LINESIZE)
 	students.each do |student|
 		puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
 	end
@@ -57,7 +58,7 @@ end
 
 
 def print_footer(names)
-	puts "\nOverall, we have #{names.length} great students"
+	puts ; puts "Overall, we have #{names.length} great students".center(LINESIZE)
 end
 
 def input_students
