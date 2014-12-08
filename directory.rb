@@ -27,13 +27,21 @@ end
 # ex.3 only print the students whose name begins with a letter "A"
 def print_alfa(students)
 	puts "\nStudents whose name begins with A are:"
-	students.each_with_index do |student,index|
-		puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)" if student[:name].split(//).first.upcase == "A"
+	students.each_with_index do |student|
+		puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].split(//).first.upcase == "A"
+	end
+end
+
+# ex. 4 only print the students whose name is shorter than 12 characters
+def print_12(students)
+	puts "\nStudents whose name has more than 12 chars are:"
+	students.each do |student|
+		puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
 	end
 end
 
 def print_footer(names)
-	puts "Overall, we have #{names.length} great students"
+	puts "\nOverall, we have #{names.length} great students"
 end
 
 def input_students
@@ -56,4 +64,5 @@ students = input_students
 print_header
 print(students)
 print_alfa(students)
+print_12(students)
 print_footer(students)
