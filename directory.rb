@@ -1,16 +1,4 @@
 
-# make the list/array of students
-# students = [ 
-# 	{:name => "Dr. Hannibal Lecter", :cohort => :december},
-# 	{:name => "Darth Vader", :cohort => :december},
-# 	{:name => "Nurse Ratched", :cohort => :december},
-# 	{:name => "Michael Corleone", :cohort => :december},
-# 	{:name => "Alex De Large", :cohort => :december},
-# 	{:name => "The Alien", :cohort => :december},
-# 	{:name => "Terminator", :cohort => :december},
-# 	{:name => "Freddy Kruger", :cohort => :december},
-# 	{:name => "The Joker", :cohort => :december}
-# ]
 LINESIZE = 60
 
 def print_header
@@ -19,59 +7,37 @@ def print_header
 end
 
 # ex.2 modify the program to print a number before the name of each student
+# ex.8 ask for both the name and the cohort, add default value
 def print(students)
 	students.each_with_index do |student,index|
 		puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
 	end
 end
 
-# ex.3 only print the students whose name begins with a letter "A"
-def print_alfa(students)
-	puts "\nStudents whose name begins with A are:".center(LINESIZE)
-	students.each_with_index do |student|
-		puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].split(//).first.upcase == "A"
-	end
-end
-
-# ex. 4 only print the students whose name is shorter than 12 characters
-def print_12(students)
-	puts "\nStudents whose name has more than 12 chars are:".center(LINESIZE)
-	students.each do |student|
-		puts "#{student[:name]} (#{student[:cohort]} cohort)" if student[:name].length < 12
-	end
-end
-
-# ex.5 Rewrite the each() method that prints all students using "while" or "until"
-def print_while(students)
-  index = 0
-  while index < students.size
-    puts "#{students[index][:name]} (#{students[index][:cohort]} cohort)"
-    index += 1
-  end
-end
-
-def print_for(students)
-  for student in students
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-  end
-end
-
-
 def print_footer(names)
 	puts ; puts "Overall, we have #{names.length} great students".center(LINESIZE)
 end
+
+@ask = Proc.new {
+  @name = gets.chomp
+  if !@name.empty? 
+    puts "cohort?"
+    @cohort = gets.chomp
+    @cohort = "December" if @cohort.empty?
+  end
+}
 
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
-  name = gets.chomp
+  @ask.call
 
-  while !name.empty? do
-  	students << {:name => name, :cohort => :december}
+  while !@name.empty? do
+  	students << {:name => @name, :cohort => @cohort}
   	puts "Now we have #{students.length} students"
-  	name = gets.chomp
+    @ask.call
   end
 
   students
@@ -80,7 +46,4 @@ end
 students = input_students
 print_header
 print(students)
-# print_alfa(students)
-# print_12(students)
-# print_while(students)
 print_footer(students)
