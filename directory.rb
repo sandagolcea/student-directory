@@ -36,19 +36,12 @@ def input_students
 
   while !@name.empty? do
   	students << {:name => @name, :cohort => @cohort.capitalize.to_sym}
-  	puts "Now we have #{students.length} students"
+  	(students.length > 1) ? (puts "Now we have #{students.length} students") : (puts "Now we have #{students.length} student" )
     @ask.call
   end
 
   students
 end
-
-# def sort_cohort(students)
-#   students
-     # student.each.cohort.value.sort
-# end
-# ask how this is done with sort ..sort for hash ?!
-# && how to do it with map ? (map() )  pls look over map again.
 
 def print_cohort(students)
   # make list of cohorts
