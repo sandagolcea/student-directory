@@ -8,7 +8,7 @@ end
 
 # ex.2 modify the program to print a number before the name of each student
 # ex.8 ask for both the name and the cohort, add default value
-def print(students)
+def print_student(students)
 	students.each_with_index do |student,index|
 		puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)"
 	end
@@ -43,6 +43,13 @@ def input_students
   students
 end
 
+def sort_cohort(students)
+  hash = {}
+  hash = students.group_by {|student| student[:cohort]}.map { |cohort, students| [cohort, students.map { |stud| stud[:name] }] }
+  hash
+end
+
+
 def print_cohort(students)
   # make list of cohorts
   cohorts = []
@@ -57,6 +64,7 @@ end
 
 students = input_students
 print_header
-print(students)
+print_student(students)
 print_cohort(students)
 print_footer(students)
+sort_cohort(students)
